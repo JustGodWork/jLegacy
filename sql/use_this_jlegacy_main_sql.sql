@@ -293,7 +293,7 @@ INSERT INTO `jobs` (`name`, `label`, `whitelisted`) VALUES
 	('tailor', 'Tailor', 0),
 	('taxi', 'Taxi', 0),
 	('unemployed', 'Unemployed', 0),
-	('unemployed2', 'civilian', 0);
+	('unemployed2', 'Civilian', 0);
 
 -- Dumping structure for table jlegacy.job_grades
 CREATE TABLE IF NOT EXISTS `job_grades` (
@@ -346,7 +346,7 @@ INSERT INTO `job_grades` (`id`, `job_name`, `grade`, `name`, `label`, `salary`, 
 	(38, 'banker', 2, 'business_banker', 'Investment banker', 30, '{}', '{}'),
 	(39, 'banker', 3, 'trader', 'Broker', 40, '{}', '{}'),
 	(40, 'banker', 4, 'boss', 'Boss', 0, '{}', '{}'),
-	(1, 'unemployed2', 0, 'civilian', 'civilian', 200, '{}', '{}');
+	(41, 'unemployed2', 0, 'civilian', 'civilian', 200, '{}', '{}');
 
 -- Dumping structure for table jlegacy.licenses
 CREATE TABLE IF NOT EXISTS `licenses` (

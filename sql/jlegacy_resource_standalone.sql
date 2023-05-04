@@ -13,7 +13,9 @@ CREATE TABLE `users` (
 	`group` VARCHAR(50) NULL DEFAULT 'user',
 	`inventory` LONGTEXT NULL DEFAULT NULL,
 	`job` VARCHAR(20) NULL DEFAULT 'unemployed',
+	`job2` VARCHAR(20) NULL DEFAULT 'unemployed2',
 	`job_grade` INT NULL DEFAULT 0,
+	`job2_grade` INT NULL DEFAULT 0,
 	`loadout` LONGTEXT NULL DEFAULT NULL,
 	`metadata` LONGTEXT NULL DEFAULT NULL,
 	`position` longtext NULL DEFAULT NULL,
@@ -47,7 +49,9 @@ CREATE TABLE `job_grades` (
 ) ENGINE=InnoDB;
 
 
-INSERT INTO `job_grades` VALUES (1,'unemployed',0,'unemployed','Unemployed',200,'{}','{}');
+INSERT INTO `job_grades` VALUES 
+	(1,'unemployed',0,'unemployed','Unemployed',200,'{}','{}'),
+	(2,'unemployed2', 0, 'civilian', 'civilian', 200, '{}', '{}');
 
 CREATE TABLE `jobs` (
 	`name` VARCHAR(50) NOT NULL,
@@ -57,4 +61,6 @@ CREATE TABLE `jobs` (
 ) ENGINE=InnoDB;
 
 
-INSERT INTO `jobs` VALUES ('unemployed','Unemployed');
+INSERT INTO `jobs` VALUES 
+	('unemployed','Unemployed'),
+	('unemployed2', 'Civilian', 0);
