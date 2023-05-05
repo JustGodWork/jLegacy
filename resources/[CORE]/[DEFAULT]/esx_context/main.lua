@@ -192,7 +192,6 @@ if Debug then
 	}
 
 	local function onSelect(menu,ele)
-		print("Ele selected",ele.title)
 
 		if ele.name == "close" then
 			exports["esx_context"]:Close()
@@ -200,12 +199,6 @@ if Debug then
 
 		if ele.name ~= "submit" then
 			return
-		end
-
-		for _,ele in ipairs(menu.eles) do
-			if ele.input then
-				print(ele.name,ele.inputType,ele.inputValue)
-			end
 		end
 
 		exports["esx_context"]:Close()

@@ -1,7 +1,7 @@
 function ESX.Trace(msg)
-  if Config.EnableDebug then
-    print(('[^2TRACE^7] %s^7'):format(msg))
-  end
+    if Config.EnableDebug then
+      console.warn(('%s^7'):format(msg))
+    end
 end
 
 function ESX.RegisterCommand(name, group, cb, allowConsole, suggestion)
@@ -14,7 +14,7 @@ function ESX.RegisterCommand(name, group, cb, allowConsole, suggestion)
   end
 
   if Core.RegisteredCommands[name] then
-    print(('[^3WARNING^7] Command ^5"%s" ^7already registered, overriding command'):format(name))
+    console.warn(('Command ^5"%s" ^7already registered, overriding command'):format(name))
 
     if Core.RegisteredCommands[name].suggestion then
       TriggerClientEvent('chat:removeSuggestion', -1, ('/%s'):format(name))
@@ -38,7 +38,7 @@ function ESX.RegisterCommand(name, group, cb, allowConsole, suggestion)
     local command = Core.RegisteredCommands[name]
 
     if not command.allowConsole and playerId == 0 then
-      print(('[^3WARNING^7] ^5%s'):format(TranslateCap('commanderror_console')))
+      console.warn(('^5%s'):format(TranslateCap('commanderror_console')))
     else
       local xPlayer, error = ESX.Players[playerId], nil
 
@@ -118,14 +118,14 @@ function ESX.RegisterCommand(name, group, cb, allowConsole, suggestion)
 
       if error then
         if playerId == 0 then
-          print(('[^3WARNING^7] %s^7'):format(error))
+          console.warn(('%s^7'):format(error))
         else
           xPlayer.showNotification(error)
         end
       else
         cb(xPlayer or false, args, function(msg)
           if playerId == 0 then
-            print(('[^3WARNING^7] %s^7'):format(msg))
+            console.warn(('%s^7'):format(msg))
           else
             xPlayer.showNotification(msg)
           end
@@ -163,7 +163,7 @@ function Core.SavePlayer(xPlayer, cb)
     parameters,
     function(affectedRows)
       if affectedRows == 1 then
-        print(('[^2INFO^7] Saved player ^5"%s^7"'):format(xPlayer.name))
+        console.warn(('Saved player ^5"%s^7"'):format(xPlayer.name))
         TriggerEvent('esx:playerSaved', xPlayer.playerId, xPlayer)
       end
       if cb then
@@ -210,7 +210,7 @@ function Core.SavePlayers(cb)
         return cb()
       end
       
-      print(('[^2INFO^7] Saved ^5%s^7 %s over ^5%s^7 ms'):format(#parameters, #parameters > 1 and 'players' or 'player', ESX.Math.Round((os.time() - startTime) / 1000000, 2)))
+      console.log(('Saved ^5%s^7 %s over ^5%s^7 ms'):format(#parameters, #parameters > 1 and 'players' or 'player', ESX.Math.Round((os.time() - startTime) / 1000000, 2)))
     end
   )
 end
@@ -335,14 +335,14 @@ function ESX.RefreshJobs()
     if Jobs[v.job_name] then
       Jobs[v.job_name].grades[tostring(v.grade)] = v
     else
-      print(('[^3WARNING^7] Ignoring job grades for ^5"%s"^0 due to missing job'):format(v.job_name))
+      console.warn(('Ignoring job grades for ^5"%s"^0 due to missing job'):format(v.job_name))
     end
   end
 
   for _, v in pairs(Jobs) do
     if ESX.Table.SizeOf(v.grades) == 0 then
       Jobs[v.name] = nil
-      print(('[^3WARNING^7] Ignoring job ^5"%s"^0 due to no job grades found'):format(v.name))
+      console.warn(('Ignoring job ^5"%s"^0 due to no job grades found'):format(v.name))
     end
   end
 
@@ -368,11 +368,11 @@ function ESX.UseItem(source, item, ...)
 
       if not success then
         return result and print(result) or
-                 print(('[^3WARNING^7] An error occured when using item ^5"%s"^7! This was not caused by ESX.'):format(item))
+        console.err(('An error occured when using item ^5"%s"^7! This was not caused by ESX.'):format(item))
       end
     end
   else
-    print(('[^3WARNING^7] Item ^5"%s"^7 was used but does not exist!'):format(item))
+    console.warn(('Item ^5"%s"^7 was used but does not exist!'):format(item))
   end
 end
 
@@ -382,7 +382,7 @@ end
 
 function ESX.SetPlayerFunctionOverride(index)
   if not index or not Core.PlayerFunctionOverrides[index] then
-    return print('[^3WARNING^7] No valid index provided.')
+    return console.warn('No valid index provided.')
   end
 
   Config.PlayerFunctionOverride = index
@@ -399,7 +399,7 @@ function ESX.GetItemLabel(item)
   if ESX.Items[item] then
     return ESX.Items[item].label
   else
-    print('[^3WARNING^7] Attemting to get invalid Item -> ^5' .. item .. "^7")
+    console.warn('Attemting to get invalid Item -> ^5' .. item .. "^7")
   end
 end
 

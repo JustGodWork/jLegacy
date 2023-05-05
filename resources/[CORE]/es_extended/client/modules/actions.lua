@@ -89,27 +89,27 @@ end)
 if Config.EnableDebug then
 
     AddEventHandler('esx:playerPedChanged', function(netId)
-        print('esx:playerPedChanged', netId)
-    end)
+        console.debug('esx:playerPedChanged', netId);
+    end);
 
     AddEventHandler('esx:playerJumping', function()
-        print('esx:playerJumping')
-    end)
+        console.debug('esx:playerJumping');
+    end);
 
     AddEventHandler('esx:enteringVehicle', function(vehicle, plate, seat, netId)
-        print('esx:enteringVehicle', 'vehicle', vehicle, 'plate', plate, 'seat', seat, 'netId', netId)
-    end)
+        console.debug('esx:enteringVehicle', 'vehicle', vehicle, 'plate', plate, 'seat', seat, 'netId', netId);
+    end);
 
     AddEventHandler('esx:enteringVehicleAborted', function()
-        print('esx:enteringVehicleAborted')
-    end)
+        console.debug('esx:enteringVehicleAborted');
+    end);
 
     AddEventHandler('esx:enteredVehicle', function(vehicle, plate, seat, displayName, netId)
-        print('esx:enteredVehicle', 'vehicle', vehicle, 'plate', plate, 'seat', seat, 'displayName', displayName, 'netId', netId)
-    end)
+        console.debug('esx:enteredVehicle', 'vehicle', vehicle, 'plate', plate, 'seat', seat, 'displayName', displayName, 'netId', netId);
+    end);
 
     AddEventHandler('esx:exitedVehicle', function(vehicle, plate, seat, displayName, netId)
-        print('esx:exitedVehicle', 'vehicle', vehicle, 'plate', plate, 'seat', seat, 'displayName', displayName, 'netId', netId)
-    end)
+        console.debug('esx:exitedVehicle', 'vehicle', vehicle, 'plate', plate, 'seat', seat, 'displayName', displayName, 'netId', netId);
+    end);
 
 end

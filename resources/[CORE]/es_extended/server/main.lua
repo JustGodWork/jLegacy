@@ -75,7 +75,7 @@ function createESXPlayer(identifier, playerId, data)
 
 	local defaultGroup = "user"
 	if Core.IsPlayerAdmin(playerId) then
-		print(('[^2INFO^0] Player ^5%s^0 Has been granted admin permissions via ^5Ace Perms^7.'):format(playerId))
+		console.log(('Player ^5%s^0 Has been granted admin permissions via ^5Ace Perms^7.'):format(playerId))
 		defaultGroup = "admin"
 	end
 
@@ -136,7 +136,7 @@ local function LoadJob(jobType, job, grade)
 		obj, obj_grade = ESX.Jobs[job], ESX.Jobs[job].grades[grade];
 	else
 
-		print(('[^3WARNING^7] Ignoring invalid %s for ^5%s^7 [job: ^5%s^7, grade: ^5%s^7]'):format(isMain and "job" or "job2", identifier, job, grade))
+		console.warn(('Ignoring invalid %s for ^5%s^7 [job: ^5%s^7, grade: ^5%s^7]'):format(isMain and "job" or "job2", identifier, job, grade))
 		job, grade = default, '0';
 		obj, obj_grade = ESX.Jobs[job], ESX.Jobs[job].grades[grade];
 
@@ -210,7 +210,7 @@ function loadESXPlayer(identifier, playerId, isNew)
 			if item then
 			foundItems[name] = count
 			else
-			print(('[^3WARNING^7] Ignoring invalid item ^5"%s"^7 for ^5"%s^7"'):format(name, identifier))
+        console.warn(('Ignoring invalid item ^5"%s"^7 for ^5"%s^7"'):format(name, identifier))
 			end
 		end
 		end
@@ -241,7 +241,7 @@ function loadESXPlayer(identifier, playerId, isNew)
 	if result.group then
 		if result.group == "superadmin" then
 		userData.group = "admin"
-		print("[^3WARNING^7] ^5Superadmin^7 detected, setting group to ^5admin^7")
+		console.warn("^5Superadmin^7 detected, setting group to ^5admin^7")
 		else
 		userData.group = result.group
 		end
@@ -356,7 +356,7 @@ function loadESXPlayer(identifier, playerId, isNew)
 	end
 	xPlayer.updateCoords()
 	xPlayer.triggerEvent('esx:registerSuggestions', Core.RegisteredCommands)
-	print(('[^2INFO^0] Player ^5"%s"^0 has connected to the server. ID: ^5%s^7'):format(xPlayer.getName(), playerId))
+	console.log(('Player ^5"%s"^0 has connected to the server. ID: ^5%s^7'):format(xPlayer.getName(), playerId))
 end
 
 AddEventHandler('chatMessage', function(playerId, author, message)
@@ -415,7 +415,7 @@ if not Config.OxInventory then
     local targetXPlayer = ESX.GetPlayerFromId(target)
     local distance = #(GetEntityCoords(GetPlayerPed(playerId)) - GetEntityCoords(GetPlayerPed(target)))
     if not sourceXPlayer or not targetXPlayer or distance > Config.DistanceGive then
-      print("[^3WARNING^7] Player Detected Cheating: ^5" .. GetPlayerName(playerId) .. "^7")
+      console.warn("Player Detected Cheating: ^5" .. GetPlayerName(playerId) .. "^7")
       return
     end
 

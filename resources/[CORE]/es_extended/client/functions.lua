@@ -67,7 +67,7 @@ function ESX.Progressbar(message, length, Options)
         return exports["esx_progressbar"]:Progressbar(message, length, Options)
     end
 
-    print("[^1ERROR^7] ^5ESX Progressbar^7 is Missing!")
+    console.err("^5ESX Progressbar^7 is Missing!")
 end
 
 function ESX.ShowNotification(message, type, length)
@@ -75,7 +75,7 @@ function ESX.ShowNotification(message, type, length)
         return exports["esx_notify"]:Notify(type, length, message)
     end
 
-    print("[^1ERROR^7] ^5ESX Notify^7 is Missing!")
+    console.err("^5ESX Notify^7 is Missing!")
 end
     
     
@@ -84,7 +84,7 @@ function ESX.TextUI(message, type)
         return exports["esx_textui"]:TextUI(message, type)
     end
 
-    print("[^1ERROR^7] ^5ESX TextUI^7 is Missing!")
+    console.err("^5ESX TextUI^7 is Missing!")
 end
 
 function ESX.HideUI()
@@ -92,7 +92,7 @@ function ESX.HideUI()
         return exports["esx_textui"]:HideUI()
     end
 
-    print("[^1ERROR^7] ^5ESX TextUI^7 is Missing!")
+    console.err("^5ESX TextUI^7 is Missing!")
 end
 
 function ESX.ShowAdvancedNotification(sender, subject, msg, textureDict, iconType, flash, saveToBrief, hudColorIndex)
@@ -159,19 +159,19 @@ if GetResourceState("esx_context") ~= "missing" then
     end
 else 
     function ESX.OpenContext()
-        print("[^1ERROR^7] Tried to ^5open^7 context menu, but ^5esx_context^7 is missing!")
+        console.err("Tried to ^5open^7 context menu, but ^5esx_context^7 is missing!")
     end
 
     function ESX.PreviewContext()
-        print("[^1ERROR^7] Tried to ^5preview^7 context menu, but ^5esx_context^7 is missing!")
+        console.err("Tried to ^5preview^7 context menu, but ^5esx_context^7 is missing!")
     end
 
     function ESX.CloseContext()
-        print("[^1ERROR^7] Tried to ^5close^7 context menu, but ^5esx_context^7 is missing!")
+        console.err("Tried to ^5close^7 context menu, but ^5esx_context^7 is missing!")
     end
 
     function ESX.RefreshContext()
-        print("[^1ERROR^7] Tried to ^5Refresh^7 context menu, but ^5esx_context^7 is missing!")
+        console.err("Tried to ^5Refresh^7 context menu, but ^5esx_context^7 is missing!")
     end
 end
 
@@ -414,7 +414,7 @@ function ESX.Game.SpawnVehicle(vehicle, coords, heading, cb, networked)
     local dist = #(playerCoords - vector)
     if dist > 424 then -- Onesync infinity Range (https://docs.fivem.net/docs/scripting-reference/onesync/)
         local executingResource = GetInvokingResource() or "Unknown"
-        return print(("[^1ERROR^7] Resource ^5%s^7 Tried to spawn vehicle on the client but the position is too far away (Out of onesync range)."):format(executing_resource))
+        return console.err(("Resource ^5%s^7 Tried to spawn vehicle on the client but the position is too far away (Out of onesync range)."):format(executing_resource))
     end
 
     CreateThread(function()

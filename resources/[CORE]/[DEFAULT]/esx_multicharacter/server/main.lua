@@ -139,7 +139,7 @@ end
 
 		MySQL.transaction(queries, function(result)
 			if result then
-				print(('[^2INFO^7] Player ^5%s %s^7 has deleted a character ^5(%s)^7'):format(GetPlayerName(source), source, identifier))
+				print(('^7[^5INFO^7]^0 Player ^5%s %s^7 has deleted a character ^5(%s)^7'):format(GetPlayerName(source), source, identifier))
 				Wait(50)
 				SetupCharacters(source)
 			else
@@ -177,9 +177,9 @@ end
 				end
 
 				if MySQL.transaction.await(queries) then
-					print(('[^2INFO^7] Updated ^5%s^7 columns to use ^5VARCHAR(%s)^7'):format(count, length))
+					print(('^7[^5INFO^7]^0 Updated ^5%s^7 columns to use ^5VARCHAR(%s)^7'):format(count, length))
 				else
-					print(('[^2INFO^7] Unable to update ^5%s^7 columns to use ^5VARCHAR(%s)^7'):format(count, length))
+					print(('^7[^5INFO^7]^0 Unable to update ^5%s^7 columns to use ^5VARCHAR(%s)^7'):format(count, length))
 				end
 			end
 
