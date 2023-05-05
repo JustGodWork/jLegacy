@@ -7,6 +7,8 @@ RegisterServerEvent('_chat:messageEntered')
 RegisterServerEvent('chat:clear')
 RegisterServerEvent('__cfx_internal:commandFallback')
 
+local player_chat_message = GetConvar('chat_player_message', 'false') == 'true'
+
 -- this is a built-in event, but somehow needs to be registered
 RegisterNetEvent('playerJoining')
 
@@ -109,6 +111,7 @@ local function unregisterHooks(resource)
 end
 
 local function routeMessage(source, author, message, mode, fromConsole)
+
     if source >= 1 then
         author = GetPlayerName(source)
     end
@@ -206,7 +209,8 @@ AddEventHandler('_chat:messageEntered', function(author, color, message, mode)
         return
     end
 
-    local source = source
+    if (not player_chat_message) then return; end
+    local source = source;
 
     routeMessage(source, author, message, mode)
 end)
