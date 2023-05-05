@@ -16,7 +16,7 @@ Config.Accounts = {
 	}
 }
 
-Config.DefaultIdentifier 		= "steam";
+Config.DefaultIdentifier 		= "license";
 Config.StartingAccountMoney 	= {bank = 50000}
 
 Config.DefaultSpawn 			= {x = -269.4, y = -955.3, z = 31.2, heading = 205.8}

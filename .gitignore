@@ -1,3 +1,7 @@
 cache/
 _start.bat
 _jlegacy.cfg
+.replxx_history
+.vscode/
+.idea/
+imgui.ini

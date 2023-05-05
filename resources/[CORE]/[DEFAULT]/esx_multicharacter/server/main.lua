@@ -26,10 +26,10 @@ end
 	local FETCH = nil
 	local SLOTS = Config.Slots or 4
 	local PREFIX = Config.Prefix or 'char'
-	local PRIMARY_IDENTIFIER = ESX.GetConfig().DefaultIdentifier or GetConvar('sv_lan', '') == 'true' and 'ip' or "license"
+	local PRIMARY_IDENTIFIER = ESX.GetConfig().DefaultIdentifier or "license"
 
 	local function GetIdentifier(source)
-		local identifier = PRIMARY_IDENTIFIER..':'
+		local identifier = PRIMARY_IDENTIFIER..':';
 		for _, v in pairs(GetPlayerIdentifiers(source)) do
 			if string.match(v, identifier) then
 				identifier = string.gsub(v, identifier, '')
@@ -93,8 +93,11 @@ end
 	end
 
 	AddEventHandler('playerConnecting', function(playerName, setKickReason, deferrals)
-		deferrals.defer()
-		local identifier = GetIdentifier(source)
+		local src = source;
+		deferrals.defer();
+
+		local identifier = GetIdentifier(src);
+		
 		if oneSyncState == "off" or oneSyncState == "legacy" then
 			return deferrals.done(('[ESX] ESX Requires Onesync Infinity to work. This server currently has Onesync set to: %s'):format(oneSyncState))
 		end
