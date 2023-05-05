@@ -7,8 +7,8 @@ lua54 'yes'
 version '1.9.4'
 
 client_scripts {
-	'@jlegacy/imports.lua',
-	'@jlegacy/client/wrapper.lua',
+	'@es_extended/imports.lua',
+	'@es_extended/client/wrapper.lua',
 	'client/main.lua'
 }
 
@@ -26,4 +26,4 @@ files {
 	'html/fonts/bankgothic.ttf'
 }
 
-dependency 'jlegacy'
+dependency 'es_extended'

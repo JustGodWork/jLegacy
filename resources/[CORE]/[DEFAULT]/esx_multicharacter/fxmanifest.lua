@@ -5,9 +5,9 @@ description 'Official Multicharacter System For ESX Legacy'
 version '1.9.4'
 lua54 'yes'
 
-dependencies {'jlegacy', 'esx_context', 'esx_identity', 'esx_skin'}
+dependencies {'es_extended', 'esx_context', 'esx_identity', 'esx_skin'}
 
-shared_scripts {'@jlegacy/imports.lua', '@jlegacy/locale.lua', 'locales/*.lua', 'config.lua'}
+shared_scripts {'@es_extended/imports.lua', '@es_extended/locale.lua', 'locales/*.lua', 'config.lua'}
 
 server_scripts {'@oxmysql/lib/MySQL.lua', 'server/*.lua'}
 

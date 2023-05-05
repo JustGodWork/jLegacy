@@ -6,7 +6,7 @@ version '1.9.4'
 description 'ESX Progressbar'
 
 client_scripts { 'Progress.lua' }
-shared_script '@jlegacy/imports.lua'
+shared_script '@es_extended/imports.lua'
 ui_page 'nui/index.html'
 
 files {

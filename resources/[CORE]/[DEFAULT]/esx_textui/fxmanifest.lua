@@ -5,7 +5,7 @@ version '1.9.4'
 description 'ESX TextUI'
 lua54 'yes'
 client_scripts { 'TextUI.lua' }
-shared_script '@jlegacy/imports.lua'
+shared_script '@es_extended/imports.lua'
 ui_page 'nui/index.html'
 
 files {

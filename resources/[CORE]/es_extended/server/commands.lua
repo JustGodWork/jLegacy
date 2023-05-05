@@ -23,6 +23,23 @@ end, true, {help = TranslateCap('command_setjob'), validate = true, arguments = 
 	{name = 'grade', help = TranslateCap('command_setjob_grade'), type = 'number'}
 }})
 
+ESX.RegisterCommand('setjob2', 'admin', function(xPlayer, args, showError)
+	if ESX.DoesJobExist(args.job, args.grade) then
+		args.playerId.setJob2(args.job, args.grade);
+	else
+		showError(TranslateCap('command_setjob_invalid'))
+	end
+	ESX.DiscordLogFields("UserActions", "/setjob2 Triggered", "pink", {
+		{name = "Player", value = xPlayer.name, inline = true},
+		{name = "Job", value = args.job, inline = true},
+    {name = "Grade", value = args.grade, inline = true}
+	})
+end, true, {help = TranslateCap('command_setjob'), validate = true, arguments = {
+	{name = 'playerId', help = TranslateCap('commandgeneric_playerid'), type = 'player'},
+	{name = 'job', help = TranslateCap('command_setjob_job'), type = 'string'},
+	{name = 'grade', help = TranslateCap('command_setjob_grade'), type = 'number'}
+}});
+
 local upgrades = Config.SpawnVehMaxUpgrades and
     {
         plate = "ADMINCAR",

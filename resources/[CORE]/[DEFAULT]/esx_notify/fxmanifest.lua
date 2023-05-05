@@ -5,7 +5,7 @@ version '1.9.4'
 author 'ESX-Framework'
 description 'Official NUI Notification system for ESX'
 
-shared_script '@jlegacy/imports.lua'
+shared_script '@es_extended/imports.lua'
 
 client_scripts { 'Notify.lua' }
 

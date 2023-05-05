@@ -8,7 +8,7 @@ version '1.9.4'
 
 ui_page 'index.html'
 
-shared_script '@jlegacy/imports.lua'
+shared_script '@es_extended/imports.lua'
 
 client_scripts {
     'config.lua',
@@ -20,5 +20,5 @@ files {
 }
 
 dependencies {
-    'jlegacy'
+    'es_extended'
 }

@@ -7,8 +7,8 @@ lua54 'yes'
 version '1.9.4'
 
 shared_scripts {
-	'@jlegacy/imports.lua',
-	'@jlegacy/locale.lua',
+	'@es_extended/imports.lua',
+	'@es_extended/locale.lua',
 }
 
 server_scripts {
@@ -32,4 +32,4 @@ files {
 	'html/css/style.css',
 }
 
-dependency 'jlegacy'
+dependency 'es_extended'
