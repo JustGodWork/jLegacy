@@ -1,3 +1,10 @@
 jClassLib/
 jZoneLib/
-test/
+jBlipLib/
+jEntityLib/
+jUILib/
+core/
+
+ox_lib/
+ox_target/
+ox_inventory/

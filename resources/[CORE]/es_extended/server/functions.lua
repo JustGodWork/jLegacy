@@ -231,10 +231,14 @@ function ESX.GetExtendedPlayers(key, val)
   return xPlayers
 end
 
+---@param source number
+---@return xPlayer
 function ESX.GetPlayerFromId(source)
   return ESX.Players[tonumber(source)]
 end
 
+---@param identifier string
+---@return xPlayer
 function ESX.GetPlayerFromIdentifier(identifier)
   return Core.playersByIdentifier[identifier]
 end

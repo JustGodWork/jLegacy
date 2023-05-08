@@ -636,7 +636,7 @@ function CreateExtendedPlayer(playerId, identifier, group, accounts, inventory, 
 							if self.metadata[index][subIndex[i]] then
 								returnValues[subIndex[i]] = self.metadata[index][subIndex[i]]
 							else
-								console.err(("xPlayer.getMeta ^5%s^7 not esxist on ^5%s^7!"):format(subIndex[i], index))
+								console.err(("xPlayer.getMeta ^5%s^7 not exist on ^5%s^7!"):format(subIndex[i], index))
 							end
 						end
 
