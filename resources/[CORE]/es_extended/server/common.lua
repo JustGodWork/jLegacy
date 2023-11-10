@@ -29,6 +29,11 @@ if GetResourceState('ox_inventory') ~= 'missing' then
 	SetConvarReplicated('inventory:weight', Config.MaxWeight * 1000)
 end
 
+if (GetResourceState('qs-inventory') ~= 'missing') then
+	Config.QSInventory = true;
+	Config.PlayerFunctionOverride = 'QSInventory';
+end
+
 local function StartDBSync()
 	CreateThread(function()
 		while true do
@@ -40,24 +45,26 @@ end
 
 MySQL.ready(function()
   	Core.DatabaseConnected = true;
-	if not Config.OxInventory then
-		local items = MySQL.query.await('SELECT * FROM items')
-		for k, v in ipairs(items) do
-		ESX.Items[v.name] = {label = v.label, weight = v.weight, rare = v.rare, canRemove = v.can_remove}
-		end
-	else
+	if (Config.QSInventory) then
+		ESX.Items = exports['qs-inventory']:GetItemList();
+	elseif (Config.OxInventory) then
 		TriggerEvent('__cfx_export_ox_inventory_Items', function(ref)
-		if ref then
-			ESX.Items = ref()
-		end
+			if ref then
+				ESX.Items = ref()
+			end
 		end)
 
 		AddEventHandler('ox_inventory:itemList', function(items)
-		ESX.Items = items
+			ESX.Items = items
 		end)
 
 		while not next(ESX.Items) do
-		Wait(0)
+			Wait(0)
+		end
+	else
+		local items = MySQL.query.await('SELECT * FROM items')
+		for k, v in ipairs(items) do
+		ESX.Items[v.name] = {label = v.label, weight = v.weight, rare = v.rare, canRemove = v.can_remove}
 		end
 	end
 

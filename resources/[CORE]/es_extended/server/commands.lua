@@ -135,7 +135,7 @@ end, true, {help = TranslateCap('command_giveaccountmoney'), validate = true, ar
 	{name = 'amount', help = TranslateCap('command_giveaccountmoney_amount'), type = 'number'}
 }})
 
-if not Config.OxInventory then
+if not Config.OxInventory and not Config.QSInventory then
 	ESX.RegisterCommand('giveitem', 'admin', function(xPlayer, args, showError)
 		args.playerId.addInventoryItem(args.item, args.count)
 	end, true, {help = TranslateCap('command_giveitem'), validate = true, arguments = {
@@ -189,21 +189,7 @@ if not Config.OxInventory then
 		{name = 'weaponName', help = TranslateCap('command_giveweapon_weapon'), type = 'weapon'},
 		{name = 'componentName', help = TranslateCap('command_giveweaponcomponent_component'), type = 'string'}
 	}})
-end
 
-ESX.RegisterCommand({'clear', 'cls'}, 'user', function(xPlayer, args, showError)
-	xPlayer.triggerEvent('chat:clear')
-end, false, {help = TranslateCap('command_clear')})
-
-ESX.RegisterCommand({'clearall', 'clsall'}, 'admin', function(xPlayer, args, showError)
-	TriggerClientEvent('chat:clear', -1)
-end, true, {help = TranslateCap('command_clearall')})
-
-ESX.RegisterCommand("refreshjobs", 'admin', function(xPlayer, args, showError)
-	ESX.RefreshJobs()
-end, true, {help = TranslateCap('command_clearall')})
-
-if not Config.OxInventory then
 	ESX.RegisterCommand('clearinventory', 'admin', function(xPlayer, args, showError)
 		for k,v in ipairs(args.playerId.inventory) do
 			if v.count > 0 then
@@ -224,6 +210,18 @@ if not Config.OxInventory then
 		{name = 'playerId', help = TranslateCap('commandgeneric_playerid'), type = 'player'}
 	}})
 end
+
+ESX.RegisterCommand({'clear', 'cls'}, 'user', function(xPlayer, args, showError)
+	xPlayer.triggerEvent('chat:clear')
+end, false, {help = TranslateCap('command_clear')})
+
+ESX.RegisterCommand({'clearall', 'clsall'}, 'admin', function(xPlayer, args, showError)
+	TriggerClientEvent('chat:clear', -1)
+end, true, {help = TranslateCap('command_clearall')})
+
+ESX.RegisterCommand("refreshjobs", 'admin', function(xPlayer, args, showError)
+	ESX.RefreshJobs()
+end, true, {help = TranslateCap('command_clearall')})
 
 ESX.RegisterCommand('setgroup', 'admin', function(xPlayer, args, showError)
 	if not args.playerId then args.playerId = xPlayer.source end
