@@ -16,6 +16,8 @@ Config.Accounts = {
 	}
 }
 
+Config.EnableDeprecated 		= false -- enable deprecated esx:getSharedObject /!\ NOT RECOMMENDED /!\
+
 Config.DefaultIdentifier 		= "license";
 Config.StartingAccountMoney 	= {bank = 50000}
 
