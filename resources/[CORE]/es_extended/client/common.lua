@@ -10,7 +10,7 @@ if GetResourceState('qs-inventory') ~= 'missing' then
 	Config.QSInventory = true
 end
 
-AddEventHandler("esx:getSharedObject", function()
+AddEventHandler("esx:getSharedObject", function(cb)
 	local use_deprecated = Config.EnableDeprecated;
 	local invoke = GetInvokingResource();
 
