@@ -58,12 +58,7 @@ MySQL.ready(function()
     Core.DatabaseConnected = true
     if (Config.QSInventory) then
 		ESX.Items = exports['qs-inventory']:GetItemList();
-	elseif (Config.OxInventory) then
-        local items = MySQL.query.await("SELECT * FROM items")
-        for _, v in ipairs(items) do
-            ESX.Items[v.name] = { label = v.label, weight = v.weight, rare = v.rare, canRemove = v.can_remove }
-        end
-    else
+    elseif (Config.OxInventory) then
         TriggerEvent("__cfx_export_ox_inventory_Items", function(ref)
             if ref then
                 ESX.Items = ref()
@@ -76,6 +71,11 @@ MySQL.ready(function()
 
         while not next(ESX.Items) do
             Wait(0)
+        end
+    else
+        local items = MySQL.query.await("SELECT * FROM items")
+        for _, v in ipairs(items) do
+            ESX.Items[v.name] = { label = v.label, weight = v.weight, rare = v.rare, canRemove = v.can_remove }
         end
     end
 
