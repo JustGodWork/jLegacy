@@ -2,7 +2,7 @@ exports("getSharedObject", function()
     return ESX
 end)
 
-AddEventHandler("esx:getSharedObject", function()
+AddEventHandler("esx:getSharedObject", function(cb)
     local use_deprecated = Config.EnableDeprecated;
 	local invoke = GetInvokingResource();
 
