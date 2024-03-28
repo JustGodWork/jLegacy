@@ -31,11 +31,10 @@ if Config.Multichar then
     end
   end)
 else
-  RegisterNetEvent('esx:onPlayerJoined')
-  AddEventHandler('esx:onPlayerJoined', function()
+  RegisterNetEvent('esx:onPlayerJoined', function()
     local _source = source
     while not next(ESX.Jobs) do
-      Wait(50)
+      Wait(50);
     end
 
     if not ESX.Players[_source] then
@@ -56,7 +55,7 @@ function onPlayerJoined(playerId)
       if result then
         loadESXPlayer(identifier, playerId, false)
       else
-        
+
         createESXPlayer(identifier, playerId)
       end
     end
@@ -104,7 +103,7 @@ if not Config.Multichar then
     if not Core.DatabaseConnected then
       return deferrals.done(('[ESX] ESX Cannot Connect to your database. Please make sure it is correctly configured in your server.cfg'):format(oneSyncState))
     end
-    
+
     if identifier then
       if ESX.GetPlayerFromIdentifier(identifier) then
         return deferrals.done(
@@ -618,14 +617,14 @@ ESX.RegisterServerCallback('esx:getPlayerData', function(source, cb)
   	local xPlayer = ESX.GetPlayerFromId(source);
 
   	cb({
-		identifier = xPlayer.identifier, 
-		accounts = xPlayer.getAccounts(), 
-		inventory = xPlayer.getInventory(), 
+		identifier = xPlayer.identifier,
+		accounts = xPlayer.getAccounts(),
+		inventory = xPlayer.getInventory(),
 		job = xPlayer.getJob(),
 		job2 = xPlayer.getJob2(),
-		loadout = xPlayer.getLoadout(), 
-		money = xPlayer.getMoney(), 
-		position = xPlayer.getCoords(true), 
+		loadout = xPlayer.getLoadout(),
+		money = xPlayer.getMoney(),
+		position = xPlayer.getCoords(true),
 		metadata = xPlayer.getMeta()
 	});
 
@@ -644,14 +643,14 @@ ESX.RegisterServerCallback('esx:getOtherPlayerData', function(source, cb, target
   	local xPlayer = ESX.GetPlayerFromId(target);
 
   	cb({
-		identifier = xPlayer.identifier, 
-		accounts = xPlayer.getAccounts(), 
-		inventory = xPlayer.getInventory(), 
+		identifier = xPlayer.identifier,
+		accounts = xPlayer.getAccounts(),
+		inventory = xPlayer.getInventory(),
 		job = xPlayer.getJob(),
 		job2 = xPlayer.getJob2(),
-		loadout = xPlayer.getLoadout(), 
-		money = xPlayer.getMoney(), 
-		position = xPlayer.getCoords(true), 
+		loadout = xPlayer.getLoadout(),
+		money = xPlayer.getMoney(),
+		position = xPlayer.getCoords(true),
 		metadata = xPlayer.getMeta()
 	});
 

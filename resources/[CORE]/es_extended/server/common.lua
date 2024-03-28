@@ -67,7 +67,7 @@ MySQL.ready(function()
 		end)
 
 		while not next(ESX.Items) do
-			Wait(0)
+			Wait(0);
 		end
 	else
 		local items = MySQL.query.await('SELECT * FROM items')
@@ -79,7 +79,7 @@ MySQL.ready(function()
 	ESX.RefreshJobs();
 
 	console.log(('^5jLegacy ^7(^6%s^7)^0 initialized!'):format(GetResourceMetadata(GetCurrentResourceName(), "version", 0)))
-		
+
 	StartDBSync()
   	if Config.EnablePaycheck then
 		StartPayCheck()
