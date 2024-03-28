@@ -1,11 +1,9 @@
-fx_version 'adamant'
+fx_version 'cerulean'
 
 game 'gta5'
-
 description 'ES Extended'
-
 lua54 'yes'
-version 'fork 1.9.4.1'
+version 'fork 1.10.5.1'
 
 shared_scripts {
 	'locale.lua',
@@ -44,7 +42,7 @@ client_scripts {
 	'client/modules/callback.lua',
 
 	'client/main.lua',
-	
+
 	'common/modules/*.lua',
 	'common/functions.lua',
 
@@ -77,6 +75,7 @@ files {
 
 dependencies {
 	'/native:0x6AE51D4B',
+    '/native:0xA61C8FC6',
 	'oxmysql',
 	'spawnmanager',
 }

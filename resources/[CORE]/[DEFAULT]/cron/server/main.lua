@@ -2,46 +2,49 @@ local Jobs = {}
 local LastTime = nil
 
 function RunAt(h, m, cb)
-	Jobs[#Jobs + 1] = {
-		h  = h,
-		m  = m,
-		cb = cb
-	}
+    Jobs[#Jobs + 1] = {
+        h = h,
+        m = m,
+        cb = cb,
+    }
 end
 
-function GetTime()
-	local timestamp = os.time()
-	local d = os.date('*t', timestamp).wday
-	local h = tonumber(os.date('%H', timestamp))
-	local m = tonumber(os.date('%M', timestamp))
-
-	return {d = d, h = h, m = m}
+function GetUnixTimestamp()
+    return os.time()
 end
 
-function OnTime(d, h, m)
+function OnTime(time)
+    for i = 1, #Jobs, 1 do
+        local scheduledTimestamp = os.time({
+            hour = Jobs[i].h,
+            minute = Jobs[i].m,
+            second = 0, -- Assuming tasks run at the start of the minute
+            day = os.date("%d", time),
+            month = os.date("%m", time),
+            year = os.date("%Y", time),
+        })
 
-	for i=1, #Jobs, 1 do
-		if Jobs[i].h == h and Jobs[i].m == m then
-			Jobs[i].cb(d, h, m)
-		end
-	end
+        if time >= scheduledTimestamp and (not LastTime or LastTime < scheduledTimestamp) then
+            Jobs[i].cb(Jobs[i].h, Jobs[i].m)
+        end
+    end
 end
 
 function Tick()
-	local time = GetTime()
+    local time = GetUnixTimestamp()
 
-	if time.h ~= LastTime.h or time.m ~= LastTime.m then
-		OnTime(time.d, time.h, time.m)
-		LastTime = time
-	end
+    if not LastTime or os.date("%M", time) ~= os.date("%M", LastTime) then
+        OnTime(time)
+        LastTime = time
+    end
 
-	SetTimeout(60000, Tick)
+    SetTimeout(60000, Tick)
 end
 
-LastTime = GetTime()
+LastTime = GetUnixTimestamp()
 
 Tick()
 
-AddEventHandler('cron:runAt', function(h, m, cb)
-	RunAt(h, m, cb)
+AddEventHandler("cron:runAt", function(h, m, cb)
+    RunAt(h, m, cb)
 end)
