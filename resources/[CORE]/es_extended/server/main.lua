@@ -320,8 +320,6 @@ function loadESXPlayer(identifier, playerId, isNew)
                 end
             end
         end
-    elseif (Config.QSInventory) then
-        exports.ox_inventory:setPlayerInventory(xPlayer, userData.inventory)
     else
         xPlayer.triggerEvent("esx:createMissingPickups", Core.Pickups)
     end
