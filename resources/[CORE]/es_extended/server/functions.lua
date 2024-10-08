@@ -488,6 +488,9 @@ function ESX.RegisterUsableItem(item, cb)
     end
 end
 
+exports('GetUsableItems', function()
+    return Core.UsableItemsCallbacks
+end)
 function ESX.UseItem(source, item, ...)
     if ESX.Items[item] then
         local itemCallback = Core.UsableItemsCallbacks[item]
